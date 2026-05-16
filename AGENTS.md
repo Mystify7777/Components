@@ -6,6 +6,14 @@ Agents working inside this repository must follow the rules below.
 
 ---
 
+## ⚠️ REQUIRED READING
+
+**Read [DESIGN_SYSTEM_RULES.md](DESIGN_SYSTEM_RULES.md) before writing any UI code.**
+
+That document is the visual contract for every component. No exceptions.
+
+---
+
 # Primary Philosophy
 
 Components must prioritize:

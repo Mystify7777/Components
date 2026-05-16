@@ -1,8 +1,9 @@
 # DESIGN_SYSTEM_RULES.md
 
-This file defines the mandatory design philosophy and implementation standards for all UI generated inside this repository.
+This file is the **visual contract** for every component built in this repository.
+Read it fully before writing a single line of UI code. No exceptions.
 
-These rules exist to maintain:
+These rules maintain:
 - visual consistency
 - scalability
 - accessibility
@@ -12,6 +13,16 @@ These rules exist to maintain:
 
 Do not treat components as isolated visuals.
 Every component must belong to a unified system.
+
+---
+
+## Mandate
+
+Every component must implement **both light and dark mode** — even if only one
+is currently in use. Tokens must be defined for both surfaces from day one.
+If someone decides to flip the theme switch in the future, they should not have
+to touch a single component. The theming layer handles it; the component is
+oblivious.
 
 ---
 
@@ -38,36 +49,56 @@ Avoid randomness disguised as creativity.
 
 ## Build Around a Primary Hue
 
-Start with:
-- one primary hue
+Start with a **single hue**. Do not pick a palette — derive one.
 
-Then vary:
-- lightness
-- saturation
-- opacity
+Vary **lightness and saturation** across steps to produce a monochromatic scale.
+This gives you cohesion for free. A good scale has at minimum 9 stops:
 
-This creates a cohesive monochromatic foundation.
+```
+50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 900 · 950
+```
+
+`500` is your anchor. Everything else radiates from it.
 
 ---
 
-## Contrast System
+## Color Accents
 
-Introduce:
-- complementary colors for contrast
-- neighboring analogous colors for harmony
-- semantic colors for states
+- **Complementary** (opposite on the wheel): use for high-contrast CTAs, alerts,
+  and anything that must demand attention.
+- **Analogous triad** (three neighbours): use for secondary actions, tags,
+  badges, and decorative differentiation.
 
-### Required Semantic Colors
-- success
-- warning
-- danger
-- info
+Do not introduce colors outside these relationships without explicit justification.
 
-Semantic colors must remain distinguishable in:
-- light mode
-- dark mode
-- low brightness
-- reduced contrast environments
+---
+
+## Semantic Token Mapping
+
+Map raw scale values to **semantic tokens**. Components consume tokens, never
+raw values. This is what makes theme switching trivial.
+
+| Token                  | Light             | Dark              |
+| ---------------------- | ----------------- | ----------------- |
+| `--color-bg`           | `50`              | `950`             |
+| `--color-surface`      | `100`             | `900`             |
+| `--color-surface-raised` | `white`         | `800`             |
+| `--color-border`       | `200`             | `700`             |
+| `--color-text`         | `900`             | `50`              |
+| `--color-text-muted`   | `500`             | `400`             |
+| `--color-primary`      | `500`             | `400`             |
+| `--color-primary-hover`| `600`             | `300`             |
+| `--color-accent`       | complementary     | complementary     |
+| `--color-destructive`  | red scale         | red scale         |
+
+### State Colors
+
+Every interactive element needs all four:
+
+- **Default** — base token
+- **Hover** — one step darker (light) / one step lighter (dark)
+- **Focus** — primary with a visible ring, never hidden
+- **Disabled** — muted text, muted border, `cursor-not-allowed`, no opacity hacks
 
 ---
 
@@ -87,75 +118,49 @@ Prefer:
 
 ---
 
-## Surface Hierarchy
+## Required Semantic Colors
 
-Define:
-- background
-- elevated surface
-- interactive surface
-- hover surface
-- active surface
-- border colors
-- muted surfaces
+- success
+- warning
+- danger
+- info
 
-Every layer should visually communicate depth and hierarchy.
+Semantic colors must remain distinguishable in:
+- light mode
+- dark mode
+- low brightness
+- reduced contrast environments
 
 ---
 
 # 3. TYPOGRAPHY SYSTEM
 
-Typography defines structure.
-
-Do not use random font sizes.
-
----
+Typography defines structure. Do not use random font sizes.
 
 ## Modular Scale
 
-All typography must follow a modular scale.
+Do not pick sizes arbitrarily. Use a **modular scale** with a fixed ratio.
+The golden ratio (`1.618`) is preferred. Alternatively `1.5` (perfect fifth) or
+`1.25` (major third) are acceptable.
 
-Preferred ratios:
-- 1.125
-- 1.2
-- 1.333
-- 1.618 (golden ratio)
+Starting from a `16px` base:
 
-Maintain consistent progression.
+| Name      | Multiplier | Approx size |
+| --------- | ---------- | ----------- |
+| `caption` | `÷ 1.618`  | `~10px`     |
+| `body`    | `× 1`      | `16px`      |
+| `heading` | `× 1.618`  | `~26px`     |
+| `display` | `× 2.618`  | `~42px`     |
 
----
+Four categories. One font family. No exceptions without a design reason.
 
-## Typography Categories
+## Typography Rules
 
-Required hierarchy:
-
-| Category | Purpose |
-|---|---|
-| Display | Hero sections |
-| Heading | Section titles |
-| Subheading | Supporting hierarchy |
-| Body | Main readable content |
-| Caption | Secondary information |
-| Label | Inputs/buttons/UI labels |
-
----
-
-## Font Rules
-
-Prefer:
-- one primary font family
-- one optional monospace font
-
-Maintain:
-- consistent line-height
-- readable letter spacing
-- proper font weights
-
-Avoid:
-- excessive font families
-- decorative fonts
-- inconsistent text rhythm
-
----
+- Line height: `1.5` for body, `1.2` for headings and display.
+- Letter spacing: tighten headings (`-0.02em`), loosen captions (`+0.04em`).
+- Max line length: `60–75ch` for body text. Never let prose stretch full width.
+- Font weight: two weights maximum — regular (`400`) and semi-bold/bold
+  (`600–700`). A third weight is a luxury, not a default.
 
 ## Readability Standards
 
@@ -170,43 +175,36 @@ Text must remain readable across:
 
 # 4. SPACING SYSTEM
 
-Spacing creates rhythm.
+Spacing creates rhythm. Use a consistent spacing scale.
 
-Use a consistent spacing scale.
+**Base unit: `8px`**
 
-Preferred base unit:
-- 4px
-- 8px
+All spacing is a multiple of it:
 
-Examples:
-- 4
-- 8
-- 12
-- 16
-- 24
-- 32
-- 40
-- 48
-- 64
+```
+4 · 8 · 16 · 24 · 32 · 48 · 64 · 96 · 128
+```
 
-Do not use arbitrary spacing values unless absolutely necessary.
+(`4px` is permitted for micro-adjustments like icon gaps and border offsets.)
+
+Padding, margin, gap, and inset all come from this scale.
+If a value is not on the scale, it is wrong.
 
 ---
 
-# 5. RADIUS SYSTEM
+# 5. BORDER RADIUS SYSTEM
 
-Corner radius must follow a predictable scale.
+Radius follows the same discipline as spacing — pick a unit and stack it.
 
-Example:
-- xs
-- sm
-- md
-- lg
-- xl
-- 2xl
-- full
+| Token          | Value   | Use                          |
+| -------------- | ------- | ---------------------------- |
+| `--radius-sm`  | `4px`   | Chips, badges, inputs        |
+| `--radius-md`  | `8px`   | Buttons, cards, dropdowns    |
+| `--radius-lg`  | `16px`  | Modals, panels, sheets       |
+| `--radius-xl`  | `24px`  | Featured cards, hero elements|
+| `--radius-full`| `9999px`| Pills, avatars, toggles      |
 
-Avoid mixing unrelated radius values.
+Do not mix radius values within the same component family.
 
 Radius should communicate:
 - hierarchy
@@ -215,16 +213,21 @@ Radius should communicate:
 
 ---
 
-# 6. SHADOW SYSTEM
+# 6. ELEVATION & SHADOW SYSTEM
 
-Shadows should communicate depth, not chaos.
+Shadows communicate **z-position**, not decoration. Use them to answer:
+"Is this surface above or below the one behind it?"
 
-Define:
-- subtle elevation
-- medium elevation
-- modal elevation
-- glow effects
-- focus shadows
+| Token              | Usage                             |
+| ------------------ | --------------------------------- |
+| `--shadow-none`    | Flat surfaces, tables, inputs     |
+| `--shadow-sm`      | Subtle cards, list items          |
+| `--shadow-md`      | Raised cards, dropdowns           |
+| `--shadow-lg`      | Modals, command palettes          |
+| `--shadow-xl`      | Toasts, floating action buttons   |
+
+In dark mode, **lower the shadow opacity** and consider a subtle inner glow or
+border to signal elevation instead — pure shadows disappear on dark backgrounds.
 
 Avoid:
 - muddy shadows
@@ -244,7 +247,7 @@ Prefer:
 All visual decisions should map to reusable tokens.
 
 Required token groups:
-- colors
+- colors (with semantic mappings)
 - spacing
 - typography
 - radius
@@ -261,9 +264,7 @@ Never hardcode repeated values.
 
 Follow proper design hierarchy.
 
----
-
-## Atoms
+### Atoms
 
 Fundamental primitives:
 - colors
@@ -277,9 +278,7 @@ Fundamental primitives:
 
 Atoms must remain reusable and predictable.
 
----
-
-## Molecules
+### Molecules
 
 Combinations of atoms:
 - cards
@@ -290,9 +289,7 @@ Combinations of atoms:
 
 Molecules establish reusable interaction patterns.
 
----
-
-## Organisms
+### Organisms
 
 Complex assemblies:
 - dashboards
@@ -307,7 +304,68 @@ Avoid building organisms from random one-off styling.
 
 ---
 
-# 9. LIGHT & DARK MODE
+# 9. MOTION SYSTEM
+
+Motion should clarify interaction. Animation should:
+- guide attention
+- communicate hierarchy
+- reinforce feedback
+
+### Duration Scale
+
+| Token               | Value   | Use                                |
+| ------------------- | ------- | ---------------------------------- |
+| `--duration-instant`| `50ms`  | Micro feedback (checkbox, toggle)  |
+| `--duration-fast`   | `150ms` | Hover states, focus rings          |
+| `--duration-normal` | `250ms` | Entrances, exits, transitions      |
+| `--duration-slow`   | `400ms` | Page-level, complex sequences      |
+
+### Easing
+
+- **Entrances**: `ease-out` — starts fast, decelerates into place.
+- **Exits**: `ease-in` — starts slow, accelerates away.
+- **State changes**: `ease-in-out` — symmetric, reads as intentional.
+- **Spring**: use Framer Motion's spring for elements that feel physical
+  (drawers, drag, tooltips). Keep stiffness high, damping moderate.
+
+### Motion Rules
+
+Avoid:
+- decorative motion spam
+- excessive duration
+- unnecessary floating effects
+- constant looping animations
+
+Prefer:
+- transform-based animations
+- opacity transitions
+- spring systems
+- GPU-friendly motion
+
+Respect:
+- `prefers-reduced-motion` media query
+
+---
+
+# 10. Z-INDEX SYSTEM
+
+Name your layers. Do not use arbitrary numbers.
+
+```
+--z-base       :   0   (normal document flow)
+--z-raised     :  10   (slightly elevated: cards, dropdowns)
+--z-overlay    : 100   (drawers, side sheets)
+--z-modal      : 200   (dialogs, command palettes)
+--z-toast      : 300   (notifications, alerts)
+--z-tooltip    : 400   (tooltips, popovers)
+--z-max        : 9999  (emergency override — use sparingly)
+```
+
+If a component needs a value not on this scale, question the design first.
+
+---
+
+# 11. LIGHT & DARK MODE
 
 ALL components must support:
 - light mode
@@ -334,7 +392,7 @@ Avoid future archaeological excavation refactors.
 
 ---
 
-# 10. ACCESSIBILITY
+# 12. ACCESSIBILITY
 
 Accessibility is not optional decoration.
 
@@ -349,7 +407,19 @@ Interactive elements must remain usable without animations.
 
 ---
 
-# 11. RESPONSIVENESS
+# 13. RESPONSIVENESS
+
+All components are **mobile-first** by default.
+
+### Breakpoints
+
+| Token   | Width   |
+| ------- | ------- |
+| `sm`    | `640px` |
+| `md`    | `768px` |
+| `lg`    | `1024px`|
+| `xl`    | `1280px`|
+| `2xl`   | `1536px`|
 
 Design mobile-first.
 
@@ -364,35 +434,11 @@ Do not patch responsiveness afterward.
 
 Responsiveness must be foundational.
 
----
-
-# 12. MOTION SYSTEM
-
-Motion should clarify interaction.
-
-Animation should:
-- guide attention
-- communicate hierarchy
-- reinforce feedback
-
-Avoid:
-- decorative motion spam
-- excessive duration
-- unnecessary floating effects
-- constant looping animations
-
-Prefer:
-- transform-based animations
-- opacity transitions
-- spring systems
-- GPU-friendly motion
-
-Respect:
-- prefers-reduced-motion
+**Touch targets must be a minimum of `44×44px`.** Never sacrifice this for density.
 
 ---
 
-# 13. COMPONENT ENGINEERING RULES
+# 14. COMPONENT ENGINEERING RULES
 
 Components must be:
 - reusable
@@ -415,7 +461,7 @@ Prefer:
 
 ---
 
-# 14. PERFORMANCE STANDARDS
+# 15. PERFORMANCE STANDARDS
 
 Optimize for:
 - low re-render count
@@ -434,7 +480,7 @@ A beautiful UI that melts the GPU is still a failure.
 
 ---
 
-# 15. CONSISTENCY OVER NOVELTY
+# 16. CONSISTENCY OVER NOVELTY
 
 Consistency scales.
 Novelty decays.
@@ -450,11 +496,11 @@ The system should feel unified across all components.
 
 ---
 
-# 16. DOCUMENTATION REQUIREMENTS
+# 17. DOCUMENTATION REQUIREMENTS
 
 Every major component should include:
 - purpose
-- usage
+- usage examples
 - props
 - accessibility notes
 - responsive behavior
@@ -463,7 +509,26 @@ Every major component should include:
 
 ---
 
-# 17. FINAL PRINCIPLE
+# 18. PRE-SHIP CHECKLIST
+
+Before any component is considered production-ready, verify:
+
+- [ ] All color values use semantic tokens, not raw scale values
+- [ ] Light and dark mode are both implemented and tested
+- [ ] Spacing values are multiples of `8px`
+- [ ] Typography uses the modular scale
+- [ ] All four interactive states exist: default, hover, focus, disabled
+- [ ] `prefers-reduced-motion` is respected
+- [ ] Animations use only `transform` and `opacity`
+- [ ] All z-index values use named layer tokens
+- [ ] Touch targets are at least `44×44px`
+- [ ] Keyboard navigation works without a mouse
+- [ ] ARIA labels are present where semantic HTML is insufficient
+- [ ] The component renders correctly at `sm`, `md`, and `lg` breakpoints
+
+---
+
+# 19. FINAL PRINCIPLE
 
 Design systems are infrastructure.
 
@@ -477,3 +542,7 @@ A component should feel:
 - cohesive
 
 Not like it was assembled during a caffeine hallucination at 2:13 AM after discovering backdrop-blur for the first time.
+
+---
+
+*This document is the law. The component is the execution.*
