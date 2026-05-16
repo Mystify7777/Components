@@ -47,7 +47,7 @@ Components consume foundations through semantic tokens — never directly.
 
 ## Color
 
-→ [`foundations/colors.md`](docs/design-system/foundations/colors.md)
+→ [`foundations/colors.md`](./design-system/foundations/colors.md)
 
 Build from a single hue. Vary lightness and saturation across 11 stops (`50–950`).
 `500` is the anchor. Map raw values to semantic tokens — components consume tokens,
@@ -57,7 +57,7 @@ never raw values. Required semantic roles: `bg`, `surface`, `surface-raised`,
 
 ## Typography
 
-→ [`foundations/typography.md`](docs/design-system/foundations/typography.md)
+→ [`foundations/typography.md`](./design-system/foundations/typography.md)
 
 One font family. Four categories on a modular scale (ratio: `1.618`):
 `caption ~10px` · `body 16px` · `heading ~26px` · `display ~42px`.
@@ -65,21 +65,21 @@ Two weights: `400` regular and `600–700` bold. Max line length `60–75ch`.
 
 ## Spacing
 
-→ [`foundations/spacing.md`](docs/design-system/foundations/spacing.md)
+→ [`foundations/spacing.md`](./design-system/foundations/spacing.md)
 
 Base unit `8px`. All spacing is a multiple: `4 · 8 · 16 · 24 · 32 · 48 · 64 · 96 · 128`.
 `4px` is permitted for micro-adjustments only. If a value is not on the scale, it is wrong.
 
 ## Border Radius
 
-→ [`foundations/radius.md`](docs/design-system/foundations/radius.md)
+→ [`foundations/radius.md`](./design-system/foundations/radius.md)
 
 Five stops: `sm 4px` · `md 8px` · `lg 16px` · `xl 24px` · `full 9999px`.
 Do not mix radius values within the same component family.
 
 ## Shadows & Elevation
 
-→ [`foundations/shadows.md`](docs/design-system/foundations/shadows.md)
+→ [`foundations/shadows.md`](./design-system/foundations/shadows.md)
 
 Shadows communicate z-position, not decoration. Five stops from `none` to `xl`.
 In dark mode, lower shadow opacity and use a subtle border to signal elevation instead —
@@ -87,7 +87,7 @@ pure shadows disappear on dark backgrounds.
 
 ## Opacity
 
-→ [`foundations/opacity.md`](docs/design-system/foundations/opacity.md)
+→ [`foundations/opacity.md`](./design-system/foundations/opacity.md)
 
 Eight stops: `0 · 5% · 10% · 20% · 40% · 60% · 80% · 100%`.
 Opacity communicates state and layer, not softness.
@@ -95,7 +95,7 @@ Never use opacity to fake a color — derive it from the scale.
 
 ## Icons
 
-→ [`foundations/icons.md`](docs/design-system/foundations/icons.md)
+→ [`foundations/icons.md`](./design-system/foundations/icons.md)
 
 Five sizes aligned to the type scale: `xs 12px` through `xl 32px`.
 Single icon library, consistent stroke width, `currentColor` always.
@@ -103,14 +103,14 @@ Every icon is either decorative (`aria-hidden`) or meaningful (labelled).
 
 ## Z-Index
 
-→ [`foundations/z-index.md`](docs/design-system/foundations/z-index.md)
+→ [`foundations/z-index.md`](./design-system/foundations/z-index.md)
 
 Named layers only. No arbitrary numbers.
 `base 0` · `raised 10` · `overlay 100` · `modal 200` · `toast 300` · `tooltip 400` · `max 9999`.
 
 ## Design Tokens
 
-→ [`foundations/tokens.md`](docs/design-system/foundations/tokens.md)
+→ [`foundations/tokens.md`](./design-system/foundations/tokens.md)
 
 Three layers: primitive → semantic → component. Components consume semantic tokens.
 Never consume primitive tokens directly. Token names describe purpose, not appearance.
@@ -125,28 +125,28 @@ How components arrange themselves in space.
 
 ## Grid System
 
-→ [`layout/grid-system.md`](docs/design-system/layout/grid-system.md)
+→ [`layout/grid-system.md`](./design-system/layout/grid-system.md)
 
 12-column grid. Four layout variants: `contained`, `full-bleed`, `sidebar`, `centered`.
 Never nest grids more than two levels deep.
 
 ## Containers
 
-→ [`layout/containers.md`](docs/design-system/layout/containers.md)
+→ [`layout/containers.md`](./design-system/layout/containers.md)
 
 Max-width `1280px`. Gutters `24px` mobile → `48px` desktop.
 Content never stretches edge-to-edge. Gutters never collapse to zero.
 
 ## Responsiveness
 
-→ [`layout/responsiveness.md`](docs/design-system/layout/responsiveness.md)
+→ [`layout/responsiveness.md`](./design-system/layout/responsiveness.md)
 
 Mobile-first. Breakpoints: `sm 640` · `md 768` · `lg 1024` · `xl 1280` · `2xl 1536`.
 Touch targets minimum `44×44px`. Responsiveness is foundational, never patched afterward.
 
 ## Density
 
-→ [`layout/density.md`](docs/design-system/layout/density.md)
+→ [`layout/density.md`](./design-system/layout/density.md)
 
 Three modes: `compact` (data-dense tools), `default` (standard product), `spacious` (marketing, onboarding).
 Density changes padding and row height — never the type scale.
@@ -162,56 +162,56 @@ How components behave in response to user and system events.
 
 ## State System
 
-→ [`interactions/states.md`](docs/design-system/interactions/states.md)
+→ [`interactions/states.md`](./design-system/interactions/states.md)
 
 Six states every interactive component must define:
 `default` · `hover` · `focus` · `disabled` · `error` · `loading`.
 
 ## State Priority
 
-→ [`interactions/state-priority.md`](docs/design-system/interactions/state-priority.md)
+→ [`interactions/state-priority.md`](./design-system/interactions/state-priority.md)
 
 When states conflict: `disabled` → `loading` → `error` → `focus` → `hover` → `active` → `default`.
 Higher priority always wins.
 
 ## Focus States
 
-→ [`interactions/focus-states.md`](docs/design-system/interactions/focus-states.md)
+→ [`interactions/focus-states.md`](./design-system/interactions/focus-states.md)
 
 `2px solid var(--color-primary)`, `2px offset`, radius matches the element.
 Applied on `:focus-visible` only. Never `outline: none` without a replacement.
 
 ## Error States
 
-→ [`interactions/error-states.md`](docs/design-system/interactions/error-states.md)
+→ [`interactions/error-states.md`](./design-system/interactions/error-states.md)
 
 Destructive color on border, label, and focus ring. Always pair color with an icon and text.
 Full error type taxonomy (validation, network, permission, timeout, server, conflict) in the referenced file.
 
 ## Loading States
 
-→ [`interactions/loading-states.md`](docs/design-system/interactions/loading-states.md)
+→ [`interactions/loading-states.md`](./design-system/interactions/loading-states.md)
 
 Three variants: skeleton (layout-heavy), spinner (inline), progress bar (known duration).
 Non-interactive during load. Skeletons must match exact dimensions of replaced content.
 
 ## Empty States
 
-→ [`interactions/empty-states.md`](docs/design-system/interactions/empty-states.md)
+→ [`interactions/empty-states.md`](./design-system/interactions/empty-states.md)
 
 Every major surface defines: loading · empty · error · success.
 Empty states explain absence and guide the next action. Never show "No data."
 
 ## Success States
 
-→ [`interactions/success-states.md`](docs/design-system/interactions/success-states.md)
+→ [`interactions/success-states.md`](./design-system/interactions/success-states.md)
 
 Confirm the action completed. Use `--color-success`. Never auto-dismiss a success
 state that required significant user effort.
 
 ## Motion
 
-→ [`interactions/motion.md`](docs/design-system/interactions/motion.md)
+→ [`interactions/motion.md`](./design-system/interactions/motion.md)
 
 Duration scale: `instant 50ms` · `fast 150ms` · `normal 250ms` · `slow 400ms`.
 Easing: `ease-out` entrances, `ease-in` exits, `ease-in-out` state changes.
@@ -227,7 +227,7 @@ How the system feels and communicates.
 
 ## Visual Language
 
-→ [`experience/visual-language.md`](docs/design-system/experience/visual-language.md)
+→ [`experience/visual-language.md`](./design-system/experience/visual-language.md)
 
 Precise, calm, premium, restrained. Confidence through clarity, not excess.
 Surfaces layer from `bg → surface → surface-raised → overlay`.
@@ -235,7 +235,7 @@ Borders and shadows are interchangeable at any boundary — never use both toget
 
 ## Emphasis
 
-→ [`experience/emphasis.md`](docs/design-system/experience/emphasis.md)
+→ [`experience/emphasis.md`](./design-system/experience/emphasis.md)
 
 One primary focal point per section. Emphasis is created through contrast on color,
 size, weight, and space — one axis at a time. Multi-axis contrast is reserved for
@@ -243,7 +243,7 @@ the single primary element only.
 
 ## Accessibility
 
-→ [`experience/accessibility.md`](docs/design-system/experience/accessibility.md)
+→ [`experience/accessibility.md`](./design-system/experience/accessibility.md)
 
 WCAG AA minimum. `4.5:1` for normal text, `3:1` for large text and UI components.
 Full keyboard contracts, ARIA patterns, focus management rules, and `prefers-reduced-motion`
@@ -251,7 +251,7 @@ implementation in the referenced file.
 
 ## Microcopy
 
-→ [`experience/microcopy.md`](docs/design-system/experience/microcopy.md)
+→ [`experience/microcopy.md`](./design-system/experience/microcopy.md)
 
 Direct, human, calm, specific. Formula for buttons: `[verb] + [object]`.
 Covers tone of voice, button labels, error messages, loading copy, confirmations,
@@ -267,28 +267,28 @@ Reusable compositions for common UI scenarios.
 
 ## Forms
 
-→ [`patterns/forms.md`](docs/design-system/patterns/forms.md)
+→ [`patterns/forms.md`](./design-system/patterns/forms.md)
 
 Single-column default. Field width signals expected input length.
 Validate on blur, not on keystroke. Never clear a form on a failed submission.
 
 ## Navigation
 
-→ [`patterns/navigation.md`](docs/design-system/patterns/navigation.md)
+→ [`patterns/navigation.md`](./design-system/patterns/navigation.md)
 
 Top nav, sidebar, bottom nav (mobile), tabs, and breadcrumbs.
 Active state must be visually distinct from hover. Max 6 top-level items.
 
 ## Feedback
 
-→ [`patterns/feedback.md`](docs/design-system/patterns/feedback.md)
+→ [`patterns/feedback.md`](./design-system/patterns/feedback.md)
 
 Four types by prominence: inline message · toast · banner · alert dialog.
 Error toasts never auto-dismiss. Alert dialogs are for destructive actions only.
 
 ## Overlays
 
-→ [`patterns/overlays.md`](docs/design-system/patterns/overlays.md)
+→ [`patterns/overlays.md`](./design-system/patterns/overlays.md)
 
 Modal (blocks interaction), drawer (side panel), popover (contextual, non-modal),
 tooltip (hover label only). Focus trapped in modals and drawers.
@@ -296,7 +296,7 @@ Never open an overlay from inside another overlay.
 
 ## Data Display
 
-→ [`patterns/data-display.md`](docs/design-system/patterns/data-display.md)
+→ [`patterns/data-display.md`](./design-system/patterns/data-display.md)
 
 Tables, lists, cards, and stat blocks. Column alignment follows content type
 (text left, numbers right). Virtualize lists over 100 items.
@@ -304,7 +304,7 @@ Stat block null state is `—`, never `0` for unloaded data.
 
 ## Error Types
 
-→ [`patterns/error-types.md`](docs/design-system/patterns/error-types.md)
+→ [`patterns/error-types.md`](./design-system/patterns/error-types.md)
 
 Taxonomy and recovery patterns for: validation, network, permission, not-found,
 timeout, server, and conflict errors. Every error answers: what, why, and what next.
@@ -319,62 +319,62 @@ How the system sustains itself over time.
 
 ## AI Execution Rules
 
-→ [`governance/ai-execution-rules.md`](docs/design-system/governance/ai-execution-rules.md)
+→ [`governance/ai-execution-rules.md`](./design-system/governance/ai-execution-rules.md)
 
 Search for reusable primitives before creating. Prefer composition over duplication.
 When conflicts arise: accessibility wins → usability → consistency → aesthetics.
 
 ## Component API Philosophy
 
-→ [`governance/api-philosophy.md`](docs/design-system/governance/api-philosophy.md)
+→ [`governance/api-philosophy.md`](./design-system/governance/api-philosophy.md)
 
 Predictable, minimal, composable, variant-driven. Prefer `variant="primary"` over
 boolean prop explosions. APIs feel intentional, not improvisational.
 
 ## Conventions
 
-→ [`governance/conventions.md`](docs/design-system/governance/conventions.md)
+→ [`governance/conventions.md`](./design-system/governance/conventions.md)
 
 Naming, file structure, and coding conventions. Consistency here is what makes
 the system legible to agents and humans alike.
 
 ## Naming
 
-→ [`governance/naming.md`](docs/design-system/governance/naming.md)
+→ [`governance/naming.md`](./design-system/governance/naming.md)
 
 Token names describe purpose, not appearance. `surface-primary` not `blue-dark`.
 
 ## Documentation
 
-→ [`governance/documentation.md`](docs/design-system/governance/documentation.md)
+→ [`governance/documentation.md`](./design-system/governance/documentation.md)
 
 Every component needs a Storybook file with 8 required stories: Default, Variants,
 Sizes, All States, Error, Loading, Dark Mode, Responsive. JSDoc on all props.
 
 ## Performance
 
-→ [`governance/performance.md`](docs/design-system/governance/performance.md)
+→ [`governance/performance.md`](./design-system/governance/performance.md)
 
 Low re-render count, minimal layout shift, tree-shakeable exports.
 A beautiful UI that melts the GPU is still a failure.
 
 ## Interaction Latency
 
-→ [`governance/interaction-latency.md`](docs/design-system/governance/interaction-latency.md)
+→ [`governance/interaction-latency.md`](./design-system/governance/interaction-latency.md)
 
 Hover feedback under `50ms`. Click acknowledgement under `100ms`.
 Never leave a user action without visible feedback.
 
 ## Design Debt
 
-→ [`governance/design-debt.md`](docs/design-system/governance/design-debt.md)
+→ [`governance/design-debt.md`](./design-system/governance/design-debt.md)
 
 Temporary deviations require rationale, must stay localized, and must include
 a cleanup plan. Do not normalize workaround styling.
 
 ## Primitives
 
-→ [`governance/primitives.md`](docs/design-system/governance/primitives.md)
+→ [`governance/primitives.md`](./design-system/governance/primitives.md)
 
 Raw values that underpin the token system. Never consumed directly by components.
 
