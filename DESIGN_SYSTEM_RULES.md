@@ -1,18 +1,10 @@
 # DESIGN_SYSTEM_RULES.md
 
-This file is the **visual contract** for every component built in this repository.
+This file is the **entry point** for the design system.
 Read it fully before writing a single line of UI code. No exceptions.
 
-These rules maintain:
-- visual consistency
-- scalability
-- accessibility
-- maintainability
-- performance
-- system cohesion
-
-Do not treat components as isolated visuals.
-Every component must belong to a unified system.
+Every section below contains a summary and a reference to the full specification.
+When the summary and the referenced file conflict, the referenced file wins.
 
 ---
 
@@ -26,725 +18,423 @@ oblivious.
 
 ---
 
-# 1. DESIGN PHILOSOPHY
+## Design Philosophy
 
-Design systems are engineered ecosystems.
+Design systems are engineered ecosystems. Do not make isolated aesthetic decisions.
 
-Do not make isolated aesthetic decisions.
+Every visual choice must connect to hierarchy, usability, consistency, scalability,
+accessibility, motion, and responsiveness. Avoid randomness disguised as creativity.
 
-Every choice must connect to:
-- hierarchy
-- usability
-- consistency
-- scalability
-- accessibility
-- motion
-- responsiveness
-
-Avoid randomness disguised as creativity.
+Consistency scales. Novelty decays. Build systems, not screenshots.
 
 ---
 
-# 2. COLOR SYSTEM
+## How to Use This Document
 
-## Build Around a Primary Hue
-
-Start with a **single hue**. Do not pick a palette — derive one.
-
-Vary **lightness and saturation** across steps to produce a monochromatic scale.
-This gives you cohesion for free. A good scale has at minimum 9 stops:
-
-```
-50 · 100 · 200 · 300 · 400 · 500 · 600 · 700 · 800 · 900 · 950
-```
-
-`500` is your anchor. Everything else radiates from it.
+1. Read this file first. Understand the shape of the system.
+2. Before building a component, open the relevant referenced files.
+3. When in doubt about a decision, the referenced file has the answer.
+4. Before shipping, run the checklist at the bottom of this file.
 
 ---
 
-## Color Accents
+## FOUNDATIONS
 
-- **Complementary** (opposite on the wheel): use for high-contrast CTAs, alerts,
-  and anything that must demand attention.
-- **Analogous triad** (three neighbours): use for secondary actions, tags,
-  badges, and decorative differentiation.
-
-Do not introduce colors outside these relationships without explicit justification.
+The primitive layer. Every token, scale, and raw value lives here.
+Components consume foundations through semantic tokens — never directly.
 
 ---
 
-## Semantic Token Mapping
+## Color
 
-Map raw scale values to **semantic tokens**. Components consume tokens, never
-raw values. This is what makes theme switching trivial.
+→ [`foundations/colors.md`](docs/design-system/foundations/colors.md)
 
-| Token                  | Light             | Dark              |
-| ---------------------- | ----------------- | ----------------- |
-| `--color-bg`           | `50`              | `950`             |
-| `--color-surface`      | `100`             | `900`             |
-| `--color-surface-raised` | `white`         | `800`             |
-| `--color-border`       | `200`             | `700`             |
-| `--color-text`         | `900`             | `50`              |
-| `--color-text-muted`   | `500`             | `400`             |
-| `--color-primary`      | `500`             | `400`             |
-| `--color-primary-hover`| `600`             | `300`             |
-| `--color-accent`       | complementary     | complementary     |
-| `--color-destructive`  | red scale         | red scale         |
+Build from a single hue. Vary lightness and saturation across 11 stops (`50–950`).
+`500` is the anchor. Map raw values to semantic tokens — components consume tokens,
+never raw values. Required semantic roles: `bg`, `surface`, `surface-raised`,
+`border`, `text`, `text-muted`, `primary`, `accent`, `destructive`, plus
+`success`, `warning`, `danger`, `info`.
 
-### State Colors
+## Typography
 
-Every interactive element needs all four:
+→ [`foundations/typography.md`](docs/design-system/foundations/typography.md)
 
-- **Default** — base token
-- **Hover** — one step darker (light) / one step lighter (dark)
-- **Focus** — primary with a visible ring, never hidden
-- **Disabled** — muted text, muted border, `cursor-not-allowed`, no opacity hacks
+One font family. Four categories on a modular scale (ratio: `1.618`):
+`caption ~10px` · `body 16px` · `heading ~26px` · `display ~42px`.
+Two weights: `400` regular and `600–700` bold. Max line length `60–75ch`.
 
----
+## Spacing
 
-## Color Rules
+→ [`foundations/spacing.md`](docs/design-system/foundations/spacing.md)
 
-Do NOT:
-- pick arbitrary colors
-- overuse vibrant accents
-- mix unrelated palettes
-- use pure black or pure white excessively
+Base unit `8px`. All spacing is a multiple: `4 · 8 · 16 · 24 · 32 · 48 · 64 · 96 · 128`.
+`4px` is permitted for micro-adjustments only. If a value is not on the scale, it is wrong.
 
-Prefer:
-- layered neutrals
-- restrained accents
-- controlled contrast
-- readable surfaces
+## Border Radius
 
----
+→ [`foundations/radius.md`](docs/design-system/foundations/radius.md)
 
-## Required Semantic Colors
-
-- success
-- warning
-- danger
-- info
-
-Semantic colors must remain distinguishable in:
-- light mode
-- dark mode
-- low brightness
-- reduced contrast environments
-
----
-
-# 3. TYPOGRAPHY SYSTEM
-
-Typography defines structure. Do not use random font sizes.
-
-## Modular Scale
-
-Do not pick sizes arbitrarily. Use a **modular scale** with a fixed ratio.
-The golden ratio (`1.618`) is preferred. Alternatively `1.5` (perfect fifth) or
-`1.25` (major third) are acceptable.
-
-Starting from a `16px` base:
-
-| Name      | Multiplier | Approx size |
-| --------- | ---------- | ----------- |
-| `caption` | `÷ 1.618`  | `~10px`     |
-| `body`    | `× 1`      | `16px`      |
-| `heading` | `× 1.618`  | `~26px`     |
-| `display` | `× 2.618`  | `~42px`     |
-
-Four categories. One font family. No exceptions without a design reason.
-
-## Typography Rules
-
-- Line height: `1.5` for body, `1.2` for headings and display.
-- Letter spacing: tighten headings (`-0.02em`), loosen captions (`+0.04em`).
-- Max line length: `60–75ch` for body text. Never let prose stretch full width.
-- Font weight: two weights maximum — regular (`400`) and semi-bold/bold
-  (`600–700`). A third weight is a luxury, not a default.
-
-## Readability Standards
-
-Text must remain readable across:
-- mobile devices
-- ultra-wide screens
-- low brightness
-- dark mode
-- reduced contrast environments
-
----
-
-# 4. SPACING SYSTEM
-
-Spacing creates rhythm. Use a consistent spacing scale.
-
-**Base unit: `8px`**
-
-All spacing is a multiple of it:
-
-```
-4 · 8 · 16 · 24 · 32 · 48 · 64 · 96 · 128
-```
-
-(`4px` is permitted for micro-adjustments like icon gaps and border offsets.)
-
-Padding, margin, gap, and inset all come from this scale.
-If a value is not on the scale, it is wrong.
-
----
-
-# 5. BORDER RADIUS SYSTEM
-
-Radius follows the same discipline as spacing — pick a unit and stack it.
-
-| Token          | Value   | Use                          |
-| -------------- | ------- | ---------------------------- |
-| `--radius-sm`  | `4px`   | Chips, badges, inputs        |
-| `--radius-md`  | `8px`   | Buttons, cards, dropdowns    |
-| `--radius-lg`  | `16px`  | Modals, panels, sheets       |
-| `--radius-xl`  | `24px`  | Featured cards, hero elements|
-| `--radius-full`| `9999px`| Pills, avatars, toggles      |
-
+Five stops: `sm 4px` · `md 8px` · `lg 16px` · `xl 24px` · `full 9999px`.
 Do not mix radius values within the same component family.
 
-Radius should communicate:
-- hierarchy
-- softness
-- interaction type
+## Shadows & Elevation
+
+→ [`foundations/shadows.md`](docs/design-system/foundations/shadows.md)
+
+Shadows communicate z-position, not decoration. Five stops from `none` to `xl`.
+In dark mode, lower shadow opacity and use a subtle border to signal elevation instead —
+pure shadows disappear on dark backgrounds.
+
+## Opacity
+
+→ [`foundations/opacity.md`](docs/design-system/foundations/opacity.md)
+
+Eight stops: `0 · 5% · 10% · 20% · 40% · 60% · 80% · 100%`.
+Opacity communicates state and layer, not softness.
+Never use opacity to fake a color — derive it from the scale.
+
+## Icons
+
+→ [`foundations/icons.md`](docs/design-system/foundations/icons.md)
+
+Five sizes aligned to the type scale: `xs 12px` through `xl 32px`.
+Single icon library, consistent stroke width, `currentColor` always.
+Every icon is either decorative (`aria-hidden`) or meaningful (labelled).
+
+## Z-Index
+
+→ [`foundations/z-index.md`](docs/design-system/foundations/z-index.md)
+
+Named layers only. No arbitrary numbers.
+`base 0` · `raised 10` · `overlay 100` · `modal 200` · `toast 300` · `tooltip 400` · `max 9999`.
+
+## Design Tokens
+
+→ [`foundations/tokens.md`](docs/design-system/foundations/tokens.md)
+
+Three layers: primitive → semantic → component. Components consume semantic tokens.
+Never consume primitive tokens directly. Token names describe purpose, not appearance.
 
 ---
 
-# 6. ELEVATION & SHADOW SYSTEM
+## LAYOUT
 
-Shadows communicate **z-position**, not decoration. Use them to answer:
-"Is this surface above or below the one behind it?"
-
-| Token              | Usage                             |
-| ------------------ | --------------------------------- |
-| `--shadow-none`    | Flat surfaces, tables, inputs     |
-| `--shadow-sm`      | Subtle cards, list items          |
-| `--shadow-md`      | Raised cards, dropdowns           |
-| `--shadow-lg`      | Modals, command palettes          |
-| `--shadow-xl`      | Toasts, floating action buttons   |
-
-In dark mode, **lower the shadow opacity** and consider a subtle inner glow or
-border to signal elevation instead — pure shadows disappear on dark backgrounds.
-
-Avoid:
-- muddy shadows
-- excessive blur
-- neon overload
-- stacked shadow spam
-
-Prefer:
-- soft layered shadows
-- controlled opacity
-- realistic elevation
+How components arrange themselves in space.
 
 ---
 
-# 7. DESIGN TOKENS
+## Grid System
 
-All visual decisions should map to reusable tokens.
+→ [`layout/grid-system.md`](docs/design-system/layout/grid-system.md)
 
-Required token groups:
-- colors (with semantic mappings)
-- spacing
-- typography
-- radius
-- shadows
-- motion
-- z-index
-- opacity
+12-column grid. Four layout variants: `contained`, `full-bleed`, `sidebar`, `centered`.
+Never nest grids more than two levels deep.
 
-Never hardcode repeated values.
+## Containers
 
----
+→ [`layout/containers.md`](docs/design-system/layout/containers.md)
 
-# 8. ATOMS → MOLECULES → ORGANISMS
+Max-width `1280px`. Gutters `24px` mobile → `48px` desktop.
+Content never stretches edge-to-edge. Gutters never collapse to zero.
 
-Follow proper design hierarchy.
+## Responsiveness
 
-### Atoms
+→ [`layout/responsiveness.md`](docs/design-system/layout/responsiveness.md)
 
-Fundamental primitives:
-- colors
-- typography
-- spacing
-- radius
-- icons
-- shadows
-- buttons
-- inputs
+Mobile-first. Breakpoints: `sm 640` · `md 768` · `lg 1024` · `xl 1280` · `2xl 1536`.
+Touch targets minimum `44×44px`. Responsiveness is foundational, never patched afterward.
 
-Atoms must remain reusable and predictable.
+## Density
 
-### Molecules
+→ [`layout/density.md`](docs/design-system/layout/density.md)
 
-Combinations of atoms:
-- cards
-- form groups
-- nav items
-- search bars
-- stat blocks
-
-Molecules establish reusable interaction patterns.
-
-### Organisms
-
-Complex assemblies:
-- dashboards
-- hero sections
-- sidebars
-- authentication flows
-- settings panels
-
-Organisms should emerge from reusable systems.
-
-Avoid building organisms from random one-off styling.
+Three modes: `compact` (data-dense tools), `default` (standard product), `spacious` (marketing, onboarding).
+Density changes padding and row height — never the type scale.
+Implemented as a context (`data-density`), not a prop on individual components.
 
 ---
 
-# 9. MOTION SYSTEM
+## INTERACTIONS
 
-Motion should clarify interaction. Animation should:
-- guide attention
-- communicate hierarchy
-- reinforce feedback
-
-### Duration Scale
-
-| Token               | Value   | Use                                |
-| ------------------- | ------- | ---------------------------------- |
-| `--duration-instant`| `50ms`  | Micro feedback (checkbox, toggle)  |
-| `--duration-fast`   | `150ms` | Hover states, focus rings          |
-| `--duration-normal` | `250ms` | Entrances, exits, transitions      |
-| `--duration-slow`   | `400ms` | Page-level, complex sequences      |
-
-### Easing
-
-- **Entrances**: `ease-out` — starts fast, decelerates into place.
-- **Exits**: `ease-in` — starts slow, accelerates away.
-- **State changes**: `ease-in-out` — symmetric, reads as intentional.
-- **Spring**: use Framer Motion's spring for elements that feel physical
-  (drawers, drag, tooltips). Keep stiffness high, damping moderate.
-
-### Motion Rules
-
-Avoid:
-- decorative motion spam
-- excessive duration
-- unnecessary floating effects
-- constant looping animations
-
-Prefer:
-- transform-based animations
-- opacity transitions
-- spring systems
-- GPU-friendly motion
-
-Respect:
-- `prefers-reduced-motion` media query
+How components behave in response to user and system events.
 
 ---
 
-# 10. Z-INDEX SYSTEM
+## State System
 
-Name your layers. Do not use arbitrary numbers.
+→ [`interactions/states.md`](docs/design-system/interactions/states.md)
 
-```
---z-base       :   0   (normal document flow)
---z-raised     :  10   (slightly elevated: cards, dropdowns)
---z-overlay    : 100   (drawers, side sheets)
---z-modal      : 200   (dialogs, command palettes)
---z-toast      : 300   (notifications, alerts)
---z-tooltip    : 400   (tooltips, popovers)
---z-max        : 9999  (emergency override — use sparingly)
-```
+Six states every interactive component must define:
+`default` · `hover` · `focus` · `disabled` · `error` · `loading`.
 
-If a component needs a value not on this scale, question the design first.
+## State Priority
 
----
+→ [`interactions/state-priority.md`](docs/design-system/interactions/state-priority.md)
 
-# 11. LIGHT & DARK MODE
+When states conflict: `disabled` → `loading` → `error` → `focus` → `hover` → `active` → `default`.
+Higher priority always wins.
 
-ALL components must support:
-- light mode
-- dark mode
+## Focus States
 
-Even if only one mode is currently used.
+→ [`interactions/focus-states.md`](docs/design-system/interactions/focus-states.md)
 
-Future adaptability is mandatory.
+`2px solid var(--color-primary)`, `2px offset`, radius matches the element.
+Applied on `:focus-visible` only. Never `outline: none` without a replacement.
 
-Do not hardcode colors directly into components.
+## Error States
 
-Use semantic tokens.
+→ [`interactions/error-states.md`](docs/design-system/interactions/error-states.md)
 
-Example:
-- background-primary
-- text-muted
-- surface-elevated
+Destructive color on border, label, and focus ring. Always pair color with an icon and text.
+Full error type taxonomy (validation, network, permission, timeout, server, conflict) in the referenced file.
 
-NOT:
-- #ffffff
-- #000000
+## Loading States
 
-Avoid future archaeological excavation refactors.
+→ [`interactions/loading-states.md`](docs/design-system/interactions/loading-states.md)
 
----
+Three variants: skeleton (layout-heavy), spinner (inline), progress bar (known duration).
+Non-interactive during load. Skeletons must match exact dimensions of replaced content.
 
-# 12. ACCESSIBILITY
+## Empty States
 
-Accessibility is not optional decoration.
+→ [`interactions/empty-states.md`](docs/design-system/interactions/empty-states.md)
 
-All UI must support:
-- keyboard navigation
-- focus visibility
-- screen readers
-- sufficient contrast
-- reduced motion preferences
+Every major surface defines: loading · empty · error · success.
+Empty states explain absence and guide the next action. Never show "No data."
 
-Interactive elements must remain usable without animations.
+## Success States
 
----
+→ [`interactions/success-states.md`](docs/design-system/interactions/success-states.md)
 
-# 13. RESPONSIVENESS
+Confirm the action completed. Use `--color-success`. Never auto-dismiss a success
+state that required significant user effort.
 
-All components are **mobile-first** by default.
+## Motion
 
-### Breakpoints
+→ [`interactions/motion.md`](docs/design-system/interactions/motion.md)
 
-| Token   | Width   |
-| ------- | ------- |
-| `sm`    | `640px` |
-| `md`    | `768px` |
-| `lg`    | `1024px`|
-| `xl`    | `1280px`|
-| `2xl`   | `1536px`|
-
-Design mobile-first.
-
-Support:
-- small mobile
-- tablet
-- laptop
-- desktop
-- ultra-wide
-
-Do not patch responsiveness afterward.
-
-Responsiveness must be foundational.
-
-**Touch targets must be a minimum of `44×44px`.** Never sacrifice this for density.
+Duration scale: `instant 50ms` · `fast 150ms` · `normal 250ms` · `slow 400ms`.
+Easing: `ease-out` entrances, `ease-in` exits, `ease-in-out` state changes.
+Animate `transform` and `opacity` only. Always respect `prefers-reduced-motion`.
 
 ---
 
-# 14. COMPONENT ENGINEERING RULES
+## EXPERIENCE
 
-Components must be:
-- reusable
-- composable
-- predictable
-- accessible
-- documented
-
-Avoid:
-- giant prop APIs
-- deeply nested logic
-- visual inconsistency
-- duplicated styles
-
-Prefer:
-- composition
-- variants
-- token-driven styling
-- modular architecture
+How the system feels and communicates.
 
 ---
 
-# 15. PERFORMANCE STANDARDS
+## Visual Language
 
-Optimize for:
-- low re-render count
-- minimal layout shift
-- reduced bundle size
-- tree-shakeable exports
-- efficient animations
+→ [`experience/visual-language.md`](docs/design-system/experience/visual-language.md)
 
-Avoid:
-- unnecessary dependencies
-- repaint-heavy effects
-- animation-induced lag
-- massive client-side overhead
+Precise, calm, premium, restrained. Confidence through clarity, not excess.
+Surfaces layer from `bg → surface → surface-raised → overlay`.
+Borders and shadows are interchangeable at any boundary — never use both together.
 
-A beautiful UI that melts the GPU is still a failure.
+## Emphasis
 
----
+→ [`experience/emphasis.md`](docs/design-system/experience/emphasis.md)
 
-# 16. CONSISTENCY OVER NOVELTY
-
-Consistency scales.
-Novelty decays.
-
-Do not reinvent:
-- spacing
-- typography
-- shadows
-- animation curves
-- interaction patterns
-
-The system should feel unified across all components.
-
----
-
-# 17. DOCUMENTATION REQUIREMENTS
-
-Every major component should include:
-- purpose
-- usage examples
-- props
-- accessibility notes
-- responsive behavior
-- performance considerations
-- variant documentation
-
----
-
-# 18. PRE-SHIP CHECKLIST
-
-Before any component is considered production-ready, verify:
-
-- [ ] All color values use semantic tokens, not raw scale values
-- [ ] Light and dark mode are both implemented and tested
-- [ ] Spacing values are multiples of `8px`
-- [ ] Typography uses the modular scale
-- [ ] All four interactive states exist: default, hover, focus, disabled
-- [ ] `prefers-reduced-motion` is respected
-- [ ] Animations use only `transform` and `opacity`
-- [ ] All z-index values use named layer tokens
-- [ ] Touch targets are at least `44×44px`
-- [ ] Keyboard navigation works without a mouse
-- [ ] ARIA labels are present where semantic HTML is insufficient
-- [ ] The component renders correctly at `sm`, `md`, and `lg` breakpoints
-
----
-
----
-
-# 20. GRID & LAYOUT SYSTEM
-
-Spacing governs distance. Grid governs arrangement.
-Without a layout system, components have rhythm but no structure.
-
-## Column Grid
-
-Base everything on a **12-column grid**.
-12 divides evenly into halves, thirds, and quarters — covering almost every
-real layout without custom math.
-
-| Columns | Use case                            |
-| ------- | ----------------------------------- |
-| 12      | Full width (hero, banner)           |
-| 8       | Primary content column              |
-| 6       | Two-column split                    |
-| 4       | Cards, grid items, sidebar widgets  |
-| 3       | Dense grids, icon sets              |
-
-## Container
-
-Every layout lives inside a max-width container with horizontal gutters.
-
-```
-max-width : 1280px  (--container-max)
-gutter    : 24px    (mobile) → 48px (desktop)
-```
-
-Never let content stretch edge-to-edge on wide screens.
-Never let gutters collapse to zero on mobile.
-
-## Layout Variants
-
-| Variant         | Description                                              |
-| --------------- | -------------------------------------------------------- |
-| `contained`     | Content capped at `--container-max`, centered            |
-| `full-bleed`    | Background spans full viewport, content stays contained  |
-| `sidebar`       | `3 + 9` or `4 + 8` column split                         |
-| `centered`      | Single narrow column (`max-w-2xl`), reading layout       |
-
-## Rules
-
-- Build mobile-first. Stack columns vertically by default, expand at `md`.
-- Gutters scale with the spacing system. No custom values.
-- Full-bleed sections (hero, image banners) may break the container for
-  backgrounds only — content inside remains contained.
-- Never nest grids more than two levels deep.
-
----
-
-# 21. OPACITY SCALE
-
-Section 7 lists opacity as a required token. Here it is.
-
-Opacity is not for making things "look softer." It communicates state and layer.
-
-| Token              | Value | Use                                          |
-| ------------------ | ----- | -------------------------------------------- |
-| `--opacity-0`      | `0`   | Fully hidden (still in DOM)                  |
-| `--opacity-5`      | `5%`  | Ghost fill, barely-there tint                |
-| `--opacity-10`     | `10%` | Hover fill on transparent buttons            |
-| `--opacity-20`     | `20%` | Subtle background tint, divider wash         |
-| `--opacity-40`     | `40%` | Placeholder text, secondary icons            |
-| `--opacity-60`     | `60%` | Backdrop scrim (light), disabled overlays    |
-| `--opacity-80`     | `80%` | Backdrop scrim (dark), modal overlays        |
-| `--opacity-100`    | `100%`| Fully visible                                |
-
-## Rules
-
-- Disabled elements use `--opacity-40` on content, never on the container.
-- Modal backdrops use `--opacity-60` (light) or `--opacity-80` (dark).
-- Never use opacity to fake a color. Derive the color from the scale instead.
-- Animate opacity with `--duration-fast` for micro states, `--duration-normal`
-  for entrances and exits.
-
----
-
-# 22. ICON SYSTEM
-
-Icons are atoms. They follow the same token discipline as everything else.
-
-## Sizing
-
-Align icon size to the text it sits beside. Never pick an arbitrary pixel value.
-
-| Token          | Size    | Paired with          |
-| -------------- | ------- | -------------------- |
-| `--icon-xs`    | `12px`  | Caption text         |
-| `--icon-sm`    | `16px`  | Body text, inputs    |
-| `--icon-md`    | `20px`  | Buttons, nav items   |
-| `--icon-lg`    | `24px`  | Section headers      |
-| `--icon-xl`    | `32px`  | Feature icons, empty states |
-
-## Stroke & Style
-
-- Use a **single icon library** across the entire system. Do not mix sets.
-- Maintain consistent stroke width — never mix filled and outlined icons
-  within the same context.
-- Icons must use `currentColor` so they inherit text color automatically
-  and respond to theme changes without extra tokens.
+One primary focal point per section. Emphasis is created through contrast on color,
+size, weight, and space — one axis at a time. Multi-axis contrast is reserved for
+the single primary element only.
 
 ## Accessibility
 
-Every icon must be one of two things — never ambiguous:
+→ [`experience/accessibility.md`](docs/design-system/experience/accessibility.md)
 
-- **Decorative**: hidden from screen readers with `aria-hidden="true"`.
-- **Meaningful**: given a label via `aria-label` on the element, or a
-  visually hidden sibling `<span>`.
+WCAG AA minimum. `4.5:1` for normal text, `3:1` for large text and UI components.
+Full keyboard contracts, ARIA patterns, focus management rules, and `prefers-reduced-motion`
+implementation in the referenced file.
 
-An icon-only button with no label is an accessibility failure.
+## Microcopy
 
-## Rules
+→ [`experience/microcopy.md`](docs/design-system/experience/microcopy.md)
 
-- Never scale icons with arbitrary `width`/`height` values. Use the token scale.
-- Maintain `4px` minimum gap between an icon and its label text.
-- In dark mode, icons inherit color from the token system — no separate icon
-  color tokens needed if `currentColor` is used correctly.
-
----
-
-# 23. FOCUS RING SPEC
-
-"Visible ring, never hidden" is a principle. This is the implementation.
-
-Every interactive element must produce an identical, predictable focus ring.
-An agent building a button and an agent building an input should produce the
-same ring. Consistency here is non-negotiable for accessibility.
-
-## Spec
-
-```
-outline        : 2px solid var(--color-primary)
-outline-offset : 2px
-border-radius  : matches the element's own --radius-* token
-```
-
-## Rules
-
-- **Never** use `outline: none` or `outline: 0` without providing an
-  explicit custom focus style as a replacement.
-- Focus rings must be visible in both light and dark mode. If the primary
-  color blends with the surface, add a 1px white/dark offset ring as a
-  separator:
-  ```
-  box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary)
-  ```
-- Focus styles apply on `:focus-visible` only — not `:focus` — so mouse
-  users are not affected but keyboard users always see the ring.
-- Do not reduce ring opacity for aesthetics. The ring is functional, not
-  decorative.
+Direct, human, calm, specific. Formula for buttons: `[verb] + [object]`.
+Covers tone of voice, button labels, error messages, loading copy, confirmations,
+empty states, placeholder text, and tooltips.
 
 ---
 
-# 24. ERROR & LOADING STATES
+## PATTERNS
 
-The interactive state list (default → hover → focus → disabled) is incomplete.
-Two states appear in almost every real component and must be designed upfront.
-
-## Error State
-
-Triggered when: validation fails, a request errors, or input is invalid.
-
-| Element        | Treatment                                              |
-| -------------- | ------------------------------------------------------ |
-| Border         | `--color-destructive` at full opacity                  |
-| Label          | `--color-destructive`                                  |
-| Message        | Error text below the field, `--icon-sm` warning icon  |
-| Background     | Subtle `--color-destructive` tint (`--opacity-5`)      |
-| Focus ring     | `--color-destructive` instead of `--color-primary`     |
-
-Rules:
-- Error messages must be linked to their input via `aria-describedby`.
-- Never rely on color alone — always pair with an icon or text label.
-- Error state persists until the condition is resolved. Do not auto-dismiss.
-
-## Loading State
-
-Triggered when: data is being fetched, an action is processing, or content
-is not yet available.
-
-| Variant          | Use                                              |
-| ---------------- | ------------------------------------------------ |
-| **Skeleton**     | Content placeholders for layout-heavy components |
-| **Spinner**      | Inline actions, button feedback, small contexts  |
-| **Progress bar** | File uploads, multi-step flows, known durations  |
-
-Rules:
-- During loading, the component must be **non-interactive**. Disable all
-  inputs and buttons. Apply `cursor-wait` or `cursor-not-allowed`.
-- Skeletons must match the **exact dimensions** of the content they replace.
-  A skeleton that reflows on load is worse than no skeleton.
-- Spinners use `--duration-slow` rotation, easing `linear`.
-- Skeleton shimmer animates with `--duration-slow`, `ease-in-out`, looping.
-- Both must respect `prefers-reduced-motion` — show a static placeholder
-  instead of an animated one.
-- Always pair loading state with a timeout or error fallback. Infinite
-  spinners are a UX failure.
+Reusable compositions for common UI scenarios.
 
 ---
 
-# 19. FINAL PRINCIPLE
+## Forms
+
+→ [`patterns/forms.md`](docs/design-system/patterns/forms.md)
+
+Single-column default. Field width signals expected input length.
+Validate on blur, not on keystroke. Never clear a form on a failed submission.
+
+## Navigation
+
+→ [`patterns/navigation.md`](docs/design-system/patterns/navigation.md)
+
+Top nav, sidebar, bottom nav (mobile), tabs, and breadcrumbs.
+Active state must be visually distinct from hover. Max 6 top-level items.
+
+## Feedback
+
+→ [`patterns/feedback.md`](docs/design-system/patterns/feedback.md)
+
+Four types by prominence: inline message · toast · banner · alert dialog.
+Error toasts never auto-dismiss. Alert dialogs are for destructive actions only.
+
+## Overlays
+
+→ [`patterns/overlays.md`](docs/design-system/patterns/overlays.md)
+
+Modal (blocks interaction), drawer (side panel), popover (contextual, non-modal),
+tooltip (hover label only). Focus trapped in modals and drawers.
+Never open an overlay from inside another overlay.
+
+## Data Display
+
+→ [`patterns/data-display.md`](docs/design-system/patterns/data-display.md)
+
+Tables, lists, cards, and stat blocks. Column alignment follows content type
+(text left, numbers right). Virtualize lists over 100 items.
+Stat block null state is `—`, never `0` for unloaded data.
+
+## Error Types
+
+→ [`patterns/error-types.md`](docs/design-system/patterns/error-types.md)
+
+Taxonomy and recovery patterns for: validation, network, permission, not-found,
+timeout, server, and conflict errors. Every error answers: what, why, and what next.
+
+---
+
+## GOVERNANCE
+
+How the system sustains itself over time.
+
+---
+
+## AI Execution Rules
+
+→ [`governance/ai-execution-rules.md`](docs/design-system/governance/ai-execution-rules.md)
+
+Search for reusable primitives before creating. Prefer composition over duplication.
+When conflicts arise: accessibility wins → usability → consistency → aesthetics.
+
+## Component API Philosophy
+
+→ [`governance/api-philosophy.md`](docs/design-system/governance/api-philosophy.md)
+
+Predictable, minimal, composable, variant-driven. Prefer `variant="primary"` over
+boolean prop explosions. APIs feel intentional, not improvisational.
+
+## Conventions
+
+→ [`governance/conventions.md`](docs/design-system/governance/conventions.md)
+
+Naming, file structure, and coding conventions. Consistency here is what makes
+the system legible to agents and humans alike.
+
+## Naming
+
+→ [`governance/naming.md`](docs/design-system/governance/naming.md)
+
+Token names describe purpose, not appearance. `surface-primary` not `blue-dark`.
+
+## Documentation
+
+→ [`governance/documentation.md`](docs/design-system/governance/documentation.md)
+
+Every component needs a Storybook file with 8 required stories: Default, Variants,
+Sizes, All States, Error, Loading, Dark Mode, Responsive. JSDoc on all props.
+
+## Performance
+
+→ [`governance/performance.md`](docs/design-system/governance/performance.md)
+
+Low re-render count, minimal layout shift, tree-shakeable exports.
+A beautiful UI that melts the GPU is still a failure.
+
+## Interaction Latency
+
+→ [`governance/interaction-latency.md`](docs/design-system/governance/interaction-latency.md)
+
+Hover feedback under `50ms`. Click acknowledgement under `100ms`.
+Never leave a user action without visible feedback.
+
+## Design Debt
+
+→ [`governance/design-debt.md`](docs/design-system/governance/design-debt.md)
+
+Temporary deviations require rationale, must stay localized, and must include
+a cleanup plan. Do not normalize workaround styling.
+
+## Primitives
+
+→ [`governance/primitives.md`](docs/design-system/governance/primitives.md)
+
+Raw values that underpin the token system. Never consumed directly by components.
+
+---
+
+## PRE-SHIP CHECKLIST
+
+Run this before any component is considered production-ready.
+
+### Tokens & Theming
+
+- [ ] All color values use semantic tokens — no raw hex or scale values
+- [ ] Light and dark mode are both implemented and visually tested
+- [ ] No hardcoded spacing — all values are multiples of `8px`
+- [ ] Typography uses the modular scale
+
+### States
+
+- [ ] All six interactive states exist: default, hover, focus, disabled, error, loading
+- [ ] State priority order is correctly implemented (see `interactions/state-priority.md`)
+- [ ] Error messages are linked via `aria-describedby`
+- [ ] Loading state is non-interactive and has a timeout or error fallback
+
+### Motion
+
+- [ ] Animations use only `transform` and `opacity`
+- [ ] `prefers-reduced-motion` is respected with a zero-motion fallback
+- [ ] No looping animations that weren't explicitly designed
+
+### Accessibility
+
+- [ ] Keyboard navigation works without a mouse
+- [ ] Focus ring is visible in both light and dark mode
+- [ ] ARIA labels present where semantic HTML is insufficient
+- [ ] Color is never the only signal — always paired with icon or text
+- [ ] Contrast meets WCAG AA (`4.5:1` text, `3:1` UI components)
+
+### Layout & Responsiveness
+
+- [ ] Touch targets are at least `44×44px`
+- [ ] Component renders correctly at `sm`, `md`, and `lg` breakpoints
+- [ ] Z-index uses named layer tokens — no arbitrary numbers
+
+### Documentation
+
+- [ ] Storybook file exists with all 8 required stories
+- [ ] All props have JSDoc comments
+- [ ] Accessibility notes are documented
+
+---
+
+## FINAL PRINCIPLE
 
 Design systems are infrastructure.
 
-Build systems, not screenshots.
+A component should feel intentional, scalable, maintainable, performant, and cohesive.
 
-A component should feel:
-- intentional
-- scalable
-- maintainable
-- performant
-- cohesive
-
-Not like it was assembled during a caffeine hallucination at 2:13 AM after discovering backdrop-blur for the first time.
+Not like it was assembled during a caffeine hallucination at 2:13 AM
+after discovering `backdrop-blur` for the first time.
 
 ---
 
-*This document is the law. The component is the execution.*
+*This document is the index. The referenced files are the law. The component is the execution.*
