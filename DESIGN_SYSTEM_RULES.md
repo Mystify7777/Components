@@ -528,6 +528,208 @@ Before any component is considered production-ready, verify:
 
 ---
 
+---
+
+# 20. GRID & LAYOUT SYSTEM
+
+Spacing governs distance. Grid governs arrangement.
+Without a layout system, components have rhythm but no structure.
+
+## Column Grid
+
+Base everything on a **12-column grid**.
+12 divides evenly into halves, thirds, and quarters — covering almost every
+real layout without custom math.
+
+| Columns | Use case                            |
+| ------- | ----------------------------------- |
+| 12      | Full width (hero, banner)           |
+| 8       | Primary content column              |
+| 6       | Two-column split                    |
+| 4       | Cards, grid items, sidebar widgets  |
+| 3       | Dense grids, icon sets              |
+
+## Container
+
+Every layout lives inside a max-width container with horizontal gutters.
+
+```
+max-width : 1280px  (--container-max)
+gutter    : 24px    (mobile) → 48px (desktop)
+```
+
+Never let content stretch edge-to-edge on wide screens.
+Never let gutters collapse to zero on mobile.
+
+## Layout Variants
+
+| Variant         | Description                                              |
+| --------------- | -------------------------------------------------------- |
+| `contained`     | Content capped at `--container-max`, centered            |
+| `full-bleed`    | Background spans full viewport, content stays contained  |
+| `sidebar`       | `3 + 9` or `4 + 8` column split                         |
+| `centered`      | Single narrow column (`max-w-2xl`), reading layout       |
+
+## Rules
+
+- Build mobile-first. Stack columns vertically by default, expand at `md`.
+- Gutters scale with the spacing system. No custom values.
+- Full-bleed sections (hero, image banners) may break the container for
+  backgrounds only — content inside remains contained.
+- Never nest grids more than two levels deep.
+
+---
+
+# 21. OPACITY SCALE
+
+Section 7 lists opacity as a required token. Here it is.
+
+Opacity is not for making things "look softer." It communicates state and layer.
+
+| Token              | Value | Use                                          |
+| ------------------ | ----- | -------------------------------------------- |
+| `--opacity-0`      | `0`   | Fully hidden (still in DOM)                  |
+| `--opacity-5`      | `5%`  | Ghost fill, barely-there tint                |
+| `--opacity-10`     | `10%` | Hover fill on transparent buttons            |
+| `--opacity-20`     | `20%` | Subtle background tint, divider wash         |
+| `--opacity-40`     | `40%` | Placeholder text, secondary icons            |
+| `--opacity-60`     | `60%` | Backdrop scrim (light), disabled overlays    |
+| `--opacity-80`     | `80%` | Backdrop scrim (dark), modal overlays        |
+| `--opacity-100`    | `100%`| Fully visible                                |
+
+## Rules
+
+- Disabled elements use `--opacity-40` on content, never on the container.
+- Modal backdrops use `--opacity-60` (light) or `--opacity-80` (dark).
+- Never use opacity to fake a color. Derive the color from the scale instead.
+- Animate opacity with `--duration-fast` for micro states, `--duration-normal`
+  for entrances and exits.
+
+---
+
+# 22. ICON SYSTEM
+
+Icons are atoms. They follow the same token discipline as everything else.
+
+## Sizing
+
+Align icon size to the text it sits beside. Never pick an arbitrary pixel value.
+
+| Token          | Size    | Paired with          |
+| -------------- | ------- | -------------------- |
+| `--icon-xs`    | `12px`  | Caption text         |
+| `--icon-sm`    | `16px`  | Body text, inputs    |
+| `--icon-md`    | `20px`  | Buttons, nav items   |
+| `--icon-lg`    | `24px`  | Section headers      |
+| `--icon-xl`    | `32px`  | Feature icons, empty states |
+
+## Stroke & Style
+
+- Use a **single icon library** across the entire system. Do not mix sets.
+- Maintain consistent stroke width — never mix filled and outlined icons
+  within the same context.
+- Icons must use `currentColor` so they inherit text color automatically
+  and respond to theme changes without extra tokens.
+
+## Accessibility
+
+Every icon must be one of two things — never ambiguous:
+
+- **Decorative**: hidden from screen readers with `aria-hidden="true"`.
+- **Meaningful**: given a label via `aria-label` on the element, or a
+  visually hidden sibling `<span>`.
+
+An icon-only button with no label is an accessibility failure.
+
+## Rules
+
+- Never scale icons with arbitrary `width`/`height` values. Use the token scale.
+- Maintain `4px` minimum gap between an icon and its label text.
+- In dark mode, icons inherit color from the token system — no separate icon
+  color tokens needed if `currentColor` is used correctly.
+
+---
+
+# 23. FOCUS RING SPEC
+
+"Visible ring, never hidden" is a principle. This is the implementation.
+
+Every interactive element must produce an identical, predictable focus ring.
+An agent building a button and an agent building an input should produce the
+same ring. Consistency here is non-negotiable for accessibility.
+
+## Spec
+
+```
+outline        : 2px solid var(--color-primary)
+outline-offset : 2px
+border-radius  : matches the element's own --radius-* token
+```
+
+## Rules
+
+- **Never** use `outline: none` or `outline: 0` without providing an
+  explicit custom focus style as a replacement.
+- Focus rings must be visible in both light and dark mode. If the primary
+  color blends with the surface, add a 1px white/dark offset ring as a
+  separator:
+  ```
+  box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary)
+  ```
+- Focus styles apply on `:focus-visible` only — not `:focus` — so mouse
+  users are not affected but keyboard users always see the ring.
+- Do not reduce ring opacity for aesthetics. The ring is functional, not
+  decorative.
+
+---
+
+# 24. ERROR & LOADING STATES
+
+The interactive state list (default → hover → focus → disabled) is incomplete.
+Two states appear in almost every real component and must be designed upfront.
+
+## Error State
+
+Triggered when: validation fails, a request errors, or input is invalid.
+
+| Element        | Treatment                                              |
+| -------------- | ------------------------------------------------------ |
+| Border         | `--color-destructive` at full opacity                  |
+| Label          | `--color-destructive`                                  |
+| Message        | Error text below the field, `--icon-sm` warning icon  |
+| Background     | Subtle `--color-destructive` tint (`--opacity-5`)      |
+| Focus ring     | `--color-destructive` instead of `--color-primary`     |
+
+Rules:
+- Error messages must be linked to their input via `aria-describedby`.
+- Never rely on color alone — always pair with an icon or text label.
+- Error state persists until the condition is resolved. Do not auto-dismiss.
+
+## Loading State
+
+Triggered when: data is being fetched, an action is processing, or content
+is not yet available.
+
+| Variant          | Use                                              |
+| ---------------- | ------------------------------------------------ |
+| **Skeleton**     | Content placeholders for layout-heavy components |
+| **Spinner**      | Inline actions, button feedback, small contexts  |
+| **Progress bar** | File uploads, multi-step flows, known durations  |
+
+Rules:
+- During loading, the component must be **non-interactive**. Disable all
+  inputs and buttons. Apply `cursor-wait` or `cursor-not-allowed`.
+- Skeletons must match the **exact dimensions** of the content they replace.
+  A skeleton that reflows on load is worse than no skeleton.
+- Spinners use `--duration-slow` rotation, easing `linear`.
+- Skeleton shimmer animates with `--duration-slow`, `ease-in-out`, looping.
+- Both must respect `prefers-reduced-motion` — show a static placeholder
+  instead of an animated one.
+- Always pair loading state with a timeout or error fallback. Infinite
+  spinners are a UX failure.
+
+---
+
 # 19. FINAL PRINCIPLE
 
 Design systems are infrastructure.
