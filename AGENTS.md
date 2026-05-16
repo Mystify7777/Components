@@ -14,7 +14,7 @@ That document is the visual contract for every component. No exceptions.
 
 ---
 
-# Primary Philosophy
+## Primary Philosophy
 
 Components must prioritize:
 
@@ -28,7 +28,7 @@ Components must prioritize:
 
 ---
 
-# Repository Rules
+## Repository Rules
 
 ## DO
 
@@ -60,7 +60,7 @@ Components must prioritize:
 
 ---
 
-# Component Requirements
+## Component Requirements
 
 Every production component should contain:
 
@@ -77,7 +77,7 @@ Component/
 
 ---
 
-# Accessibility Rules
+## Accessibility Rules
 
 All components should:
 
@@ -90,7 +90,7 @@ All components should:
 
 ---
 
-# Animation Rules
+## Animation Rules
 
 Animations should:
 
@@ -103,7 +103,7 @@ Animations should:
 
 ---
 
-# Styling Rules
+## Styling Rules
 
 Preferred stack:
 
@@ -120,7 +120,7 @@ Avoid:
 
 ---
 
-# Performance Rules
+## Performance Rules
 
 Prefer:
 
@@ -138,7 +138,7 @@ Avoid:
 
 ---
 
-# Naming Conventions
+## Naming Conventions
 
 ## Components
 
@@ -166,7 +166,7 @@ mergeClasses.ts
 
 ---
 
-# Documentation Rules
+## Documentation Rules
 
 Every reusable component must include:
 
@@ -179,7 +179,7 @@ Every reusable component must include:
 
 ---
 
-# AI Optimization Rules
+## AI Optimization Rules
 
 To improve AI agent performance:
 
@@ -192,7 +192,7 @@ To improve AI agent performance:
 
 ---
 
-# Design Language
+## Design Language
 
 The design system emphasizes:
 
@@ -207,7 +207,7 @@ Avoid visual chaos disguised as creativity.
 
 ---
 
-# Long-Term Goal
+## Long-Term Goal
 
 This repository should eventually function as:
 
