@@ -1,22 +1,20 @@
 import React from 'react';
-import Box from '../Box';
 import { spacing } from '../../tokens';
 
 export type StackProps = {
-  as?: React.ElementType;
   direction?: 'column' | 'row';
-  gap?: keyof typeof spacing | number;
+  gap?: keyof typeof spacing;
   className?: string;
   children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLElement>;
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'style'>;
 
-export const Stack = ({ as, direction = 'column', gap = 4, className, children, style, ...rest }: StackProps & { style?: React.CSSProperties }) => {
-  const gapValue = typeof gap === 'number' ? (spacing as any)[gap] ?? `${gap}px` : (spacing as any)[gap];
-  const compStyle: React.CSSProperties = { display: 'flex', flexDirection: direction, gap: gapValue, ...(style || {}) };
+export const Stack = ({ direction = 'column', gap = 'md', className, children, ...rest }: StackProps) => {
+  const gapValue = (spacing as Record<string, string>)[gap] || spacing.md;
+  const stackClassName = `flex flex-${direction === 'column' ? 'col' : 'row'} ${className || ''}`;
   return (
-    <Box as={as as any} className={className} style={compStyle} {...rest}>
+    <div className={stackClassName} style={{ display: 'flex', flexDirection: direction, gap: gapValue }} {...rest}>
       {children}
-    </Box>
+    </div>
   );
 };
 

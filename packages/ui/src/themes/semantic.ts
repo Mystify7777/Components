@@ -1,38 +1,37 @@
-// semantic.ts — defines what tokens mean (semantic roles)
-export const semantic = {
+// semantic.ts — defines semantic theme structure (TYPES ONLY)
+export type SemanticTheme = {
   surface: {
-    primary: 'surface.primary',
-    secondary: 'surface.secondary',
-    elevated: 'surface.elevated',
-    muted: 'surface.muted',
-  },
+    primary: string;
+    secondary: string;
+    elevated: string;
+    muted: string;
+  };
   background: {
-    page: 'background.page',
-    panel: 'background.panel',
-    overlay: 'background.overlay',
-  },
+    page: string;
+    panel: string;
+    overlay: string;
+  };
   text: {
-    primary: 'text.primary',
-    secondary: 'text.secondary',
-    muted: 'text.muted',
-    inverse: 'text.inverse',
-  },
+    primary: string;
+    secondary: string;
+    muted: string;
+    inverse: string;
+  };
   border: {
-    default: 'border.default',
-    muted: 'border.muted',
-  },
+    default: string;
+    muted: string;
+  };
   interactive: {
-    primary: 'interactive.primary',
-    hover: 'interactive.hover',
-    active: 'interactive.active',
-    disabled: 'interactive.disabled',
-  },
+    primary: string;
+    hover: string;
+    active: string;
+    disabled: string;
+  };
   shadow: {
-    small: 'shadow.small',
-    medium: 'shadow.medium',
-    large: 'shadow.large',
-  },
+    small: string;
+    medium: string;
+    large: string;
+  };
 };
 
-export type SemanticTheme = typeof semantic;
-export default semantic;
+export default SemanticTheme;

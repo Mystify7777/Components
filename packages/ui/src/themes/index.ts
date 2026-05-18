@@ -1,4 +1,4 @@
-export { default as semantic } from './semantic';
+export type { default as SemanticTheme } from './semantic';
 export { default as light } from './light';
 export { default as dark } from './dark';
 

@@ -1,5 +1,5 @@
 import colors from '../tokens/colors';
-import type { SemanticTheme } from './semantic';
+import type SemanticTheme from './semantic';
 
 // Map semantic roles to concrete dark theme values
 export const dark: SemanticTheme = {

@@ -1,20 +1,25 @@
 import React from 'react';
-import Box from '../Box';
+import { spacing } from '../../tokens';
 
-export type GridProps = {
-  as?: React.ElementType;
+export type GridProps = React.HTMLAttributes<HTMLDivElement> & {
   cols?: number;
-  gap?: React.CSSProperties['gap'];
+  gap?: keyof typeof spacing;
   className?: string;
   children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLElement>;
+};
 
-export const Grid = ({ as, cols = 12, gap = '16px', className, children, style, ...rest }: GridProps & { style?: React.CSSProperties }) => {
-  const compStyle: React.CSSProperties = { display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap, ...(style || {}) };
+export const Grid = ({ cols = 12, gap = 'md', className, children, ...rest }: GridProps) => {
+  const gapValue = (spacing as Record<string, string>)[gap] || spacing.md;
+  const gridClassName = `grid grid-cols-${cols} ${className || ''}`;
+  const inlineStyles: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+    gap: gapValue,
+  };
   return (
-    <Box as={as as any} className={className} style={compStyle} {...rest}>
+    <div className={gridClassName} style={inlineStyles} {...rest}>
       {children}
-    </Box>
+    </div>
   );
 };
 

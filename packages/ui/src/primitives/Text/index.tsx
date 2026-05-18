@@ -1,22 +1,28 @@
 import React from 'react';
 import { typography } from '../../tokens';
 
-export type TextProps<E extends React.ElementType = 'span'> = {
-  as?: E;
-  size?: keyof typeof typography['fontSize'];
+export type TextVariant = keyof typeof typography['variants'];
+
+export type TextProps = React.HTMLAttributes<HTMLSpanElement> & {
+  variant?: TextVariant;
+  as?: 'span' | 'p' | 'div';
   className?: string;
   children?: React.ReactNode;
-  style?: React.CSSProperties;
-} & Omit<React.ComponentPropsWithoutRef<E>, 'as' | 'children' | 'style' | 'className'>;
+};
 
-export const Text = <E extends React.ElementType = 'span'>({ as, size = 'body', className, children, style, ...rest }: TextProps<E>) => {
-  const Comp = (as || 'span') as any;
-  const fontSizeRaw = (typography.fontSize as any)[size] ?? typography.fontSize.body;
-  const compStyle: React.CSSProperties = { fontFamily: typography.fontFamily, fontSize: typeof fontSizeRaw === 'number' ? `${fontSizeRaw}px` : fontSizeRaw, ...(style || {}) };
+export const Text = ({ variant = 'body', as: Component = 'span', className, children, ...rest }: TextProps) => {
+  const variantStyles = typography.variants[variant];
+  const textClassName = `text-variant-${variant} ${className || ''}`;
+  const inlineStyles: React.CSSProperties = {
+    fontFamily: typography.fontFamily,
+    fontSize: `${variantStyles.fontSize}px`,
+    lineHeight: variantStyles.lineHeight,
+    fontWeight: variantStyles.fontWeight,
+  };
   return (
-    <Comp className={className} style={compStyle} {...(rest as any)}>
+    <Component className={textClassName} style={inlineStyles} {...(rest as any)}>
       {children}
-    </Comp>
+    </Component>
   );
 };
 
