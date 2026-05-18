@@ -1,0 +1,29 @@
+{
+  "entries": [
+    {
+      "date": "2026-05-18T00:00:00Z",
+      "author": "automation",
+      "summary": "Implement UI tokens, themes, and primitives",
+      "files": [
+        "packages/ui/src/tokens/spacing.ts",
+        "packages/ui/src/tokens/radius.ts",
+        "packages/ui/src/tokens/zIndex.ts",
+        "packages/ui/src/tokens/motion.ts",
+        "packages/ui/src/tokens/breakpoints.ts",
+        "packages/ui/src/tokens/colors.ts",
+        "packages/ui/src/themes/semantic.ts",
+        "packages/ui/src/themes/light.ts",
+        "packages/ui/src/themes/dark.ts",
+        "packages/ui/src/themes/index.ts",
+        "packages/ui/src/primitives/Box/index.tsx",
+        "packages/ui/src/primitives/Stack/index.tsx",
+        "packages/ui/src/primitives/Flex/index.tsx",
+        "packages/ui/src/primitives/Text/index.tsx",
+        "packages/ui/src/primitives/Surface/index.tsx",
+        "packages/ui/src/primitives/Grid/index.tsx",
+        "scripts/append_rules_link.js"
+      ],
+      "notes": "Tokens, themes, and primitives implemented. Requires TypeScript project config and build setup in packages/ui to compile TSX."
+    }
+  ]
+}
