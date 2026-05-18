@@ -10,3 +10,4 @@ export * from './utils';
 export * from './styles';
 export * from './themes';
 export * from './components';
+export * from './providers';
