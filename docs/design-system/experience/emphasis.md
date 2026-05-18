@@ -119,3 +119,6 @@ Every highlighted element consumes attention budget.
 
 If everything is emphasized:
 nothing is emphasized.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

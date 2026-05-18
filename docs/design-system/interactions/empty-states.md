@@ -62,3 +62,6 @@ Empty states should:
 - preserve spacing rhythm
 - avoid excessive decoration
 - support both light and dark mode
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

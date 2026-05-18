@@ -9,3 +9,5 @@ Targets:
 - loading feedback: immediate
 
 Never leave user actions without visible acknowledgement.
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

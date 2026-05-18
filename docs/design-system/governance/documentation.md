@@ -139,3 +139,6 @@ interface ButtonProps {
 
 Storybook's `autodocs` tag generates the prop table from these comments.
 Without them, the generated table is useless.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

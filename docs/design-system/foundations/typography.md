@@ -38,3 +38,6 @@ Text must remain readable across:
 - reduced contrast environments
 
 ---
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

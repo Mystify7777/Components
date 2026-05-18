@@ -37,3 +37,6 @@ Responsiveness must be foundational.
 **Touch targets must be a minimum of `44×44px`.** Never sacrifice this for density.
 
 ---
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

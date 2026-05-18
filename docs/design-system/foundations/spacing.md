@@ -14,3 +14,6 @@ All spacing is a multiple of it:
 
 Padding, margin, gap, and inset all come from this scale.
 If a value is not on the scale, it is wrong.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

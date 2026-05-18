@@ -115,3 +115,5 @@ NOT:
 - #000000
 
 Avoid future archaeological excavation refactors.
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

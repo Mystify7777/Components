@@ -75,3 +75,6 @@ Prefer:
 - Large blur surfaces should be minimized and isolated.
 
 A visually impressive UI that drops frames under normal usage is a failure.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

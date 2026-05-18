@@ -19,3 +19,6 @@ Radius should communicate:
 - interaction type
 
 ---
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

@@ -25,3 +25,5 @@ real layout without custom math.
 | `full-bleed`    | Background spans full viewport, content stays contained  |
 | `sidebar`       | `3 + 9` or `4 + 8` column split                         |
 | `centered`      | Single narrow column (`max-w-2xl`), reading layout       |
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

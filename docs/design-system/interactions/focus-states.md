@@ -30,3 +30,6 @@ border-radius  : matches the element's own --radius-* token
   users are not affected but keyboard users always see the ring.
 - Do not reduce ring opacity for aesthetics. The ring is functional, not
   decorative.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

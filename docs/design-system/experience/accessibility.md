@@ -164,3 +164,6 @@ so transitions fire instantly without visual jump.
   border: 0;
 }
 ```
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

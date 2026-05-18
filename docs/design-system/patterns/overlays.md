@@ -134,3 +134,6 @@ Drawers slide from their edge (`translateX` or `translateY`), not fade.
 Use Framer Motion spring for drawer physics on mobile (feels natural with drag gesture).
 
 Respect `prefers-reduced-motion`: remove transform, keep opacity fade only.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

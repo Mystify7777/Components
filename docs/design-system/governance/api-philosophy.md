@@ -34,3 +34,6 @@ Bad:
 ```
 
 A component API should feel intentional, not improvisational.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

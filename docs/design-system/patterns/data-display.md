@@ -123,3 +123,6 @@ or summary panels.
 - Null state: show `—` (em-dash) when data is unavailable. Never show `0`
   when the data simply has not loaded.
 - Delta color must pass `3 : 1` contrast against its background in both modes.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

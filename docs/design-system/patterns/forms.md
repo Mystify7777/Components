@@ -113,3 +113,6 @@ Rules:
 - Showing all validation errors only after the final submit.
 - Two-column layouts for unrelated fields.
 - Submit buttons that do nothing visible while processing.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

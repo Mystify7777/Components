@@ -178,3 +178,6 @@ Tooltips should explain what something does, not repeat its label.
 | Settings icon | "Settings"          | (no tooltip needed — icon + label exists)|
 
 One sentence maximum. No punctuation unless it is a full sentence with a verb.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

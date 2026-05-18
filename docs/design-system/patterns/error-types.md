@@ -13,3 +13,6 @@ Each category should:
 - communicate clearly
 - suggest recovery
 - avoid technical jargon
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

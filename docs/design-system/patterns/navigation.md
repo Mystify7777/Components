@@ -111,3 +111,6 @@ The active state must be distinct from hover.
 - Drawer nav opens from the left edge.
 - Navigation items in the drawer use `48px` minimum height for touch targets.
 - Close the drawer on navigation. Do not leave it open after the user taps a link.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

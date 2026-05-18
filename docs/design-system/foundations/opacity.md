@@ -22,3 +22,6 @@ Opacity is not for making things "look softer." It communicates state and layer.
 - Never use opacity to fake a color. Derive the color from the scale instead.
 - Animate opacity with `--duration-fast` for micro states, `--duration-normal`
   for entrances and exits.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

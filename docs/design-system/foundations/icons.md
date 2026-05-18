@@ -38,3 +38,6 @@ An icon-only button with no label is an accessibility failure.
 - Maintain `4px` minimum gap between an icon and its label text.
 - In dark mode, icons inherit color from the token system — no separate icon
   color tokens needed if `currentColor` is used correctly.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

@@ -16,3 +16,6 @@ Avoid:
 - massive client-side overhead
 
 A beautiful UI that melts the GPU is still a failure.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

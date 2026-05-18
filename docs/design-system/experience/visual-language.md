@@ -104,3 +104,6 @@ Use one, not both, at each boundary.
 Avoid decorative borders that exist only for visual interest.
 Every border must separate something from something else.
 If removing a border changes nothing about readability or hierarchy, remove the border.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

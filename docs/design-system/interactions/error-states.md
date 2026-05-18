@@ -151,3 +151,6 @@ Error state takes priority over all states except disabled.
 Disabled → Error → Focus → Hover → Default
 
 A disabled field cannot be in an error state. Everything else can.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

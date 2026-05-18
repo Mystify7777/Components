@@ -18,3 +18,6 @@ When conflicts exist:
 2. usability wins
 3. consistency wins
 4. visual aesthetics come last
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

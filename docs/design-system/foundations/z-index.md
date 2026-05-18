@@ -13,3 +13,6 @@ Name your layers. Do not use arbitrary numbers.
 ```
 
 If a component needs a value not on this scale, question the design first.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

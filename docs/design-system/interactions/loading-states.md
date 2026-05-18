@@ -21,3 +21,6 @@ Rules:
   instead of an animated one.
 - Always pair loading state with a timeout or error fallback. Infinite
   spinners are a UX failure.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

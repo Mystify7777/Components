@@ -36,3 +36,6 @@ Do not reinvent:
 - interaction patterns
 
 The system should feel unified across all components.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

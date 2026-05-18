@@ -26,3 +26,6 @@ Prefer:
 - soft layered shadows
 - controlled opacity
 - realistic elevation
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

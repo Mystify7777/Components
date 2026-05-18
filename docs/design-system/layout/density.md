@@ -90,3 +90,6 @@ Components read the density context and apply the appropriate spacing tokens.
 Do not implement density as a prop on individual components. Density is a
 context, not a configuration. Setting `density="compact"` on every row of
 a table is the wrong model.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)

@@ -117,3 +117,6 @@ Examples: deleting an account, removing a team member, discarding unsaved change
 | `info`    | `--color-info`           | `info-circle`       |
 
 Never use color alone — always pair with an icon and text.
+
+---
+Reference: [DESIGN_SYSTEM_RULES.md](../../DESIGN_SYSTEM_RULES.md)
