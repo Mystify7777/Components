@@ -1,7 +1,29 @@
 {
   "entries": [
     {
-      "date": "2026-05-18T00:00:00Z",
+      "date": "2026-05-18T18:00:00Z",
+      "author": "automation",
+      "summary": "Architecture fixes and cn utility",
+      "files": [
+        "packages/ui/src/themes/semantic.ts",
+        "packages/ui/src/tokens/spacing.ts",
+        "packages/ui/src/tokens/typography.ts",
+        "packages/ui/src/primitives/Box/index.tsx",
+        "packages/ui/src/primitives/Stack/index.tsx",
+        "packages/ui/src/primitives/Flex/index.tsx",
+        "packages/ui/src/primitives/Text/index.tsx",
+        "packages/ui/src/primitives/Surface/index.tsx",
+        "packages/ui/src/primitives/Grid/index.tsx",
+        "packages/ui/src/themes/light.ts",
+        "packages/ui/src/themes/dark.ts",
+        "packages/ui/src/themes/index.ts",
+        "packages/ui/src/utils/cn.ts",
+        "docs/UI_ROADMAP.md"
+      ],
+      "notes": "Fixed semantic type architecture; converted spacing to semantic names (xs-xxxl); added typography variants; removed polymorphism and style props from primitives; added cn utility for Tailwind class merging."
+    },
+    {
+      "date": "2026-05-18T12:00:00Z",
       "author": "automation",
       "summary": "Implement UI tokens, themes, and primitives",
       "files": [
@@ -23,7 +45,7 @@
         "packages/ui/src/primitives/Grid/index.tsx",
         "scripts/append_rules_link.js"
       ],
-      "notes": "Tokens, themes, and primitives implemented. Requires TypeScript project config and build setup in packages/ui to compile TSX."
+      "notes": "Tokens, themes, and primitives implemented. Initial architecture with some later corrections needed."
     }
   ]
 }
