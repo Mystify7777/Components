@@ -1,0 +1,164 @@
+/**
+ * theme.css
+ * 
+ * CSS variables mapped from semantic theme tokens.
+ * 
+ * TS tokens are the source of truth.
+ * CSS variables are the runtime delivery mechanism.
+ * 
+ * Usage: var(--surface-primary), var(--text-muted), etc.
+ */
+
+/* Light theme (default) */
+:root {
+  /* Surface tokens */
+  --surface-primary: #ffffff;
+  --surface-secondary: #f8fafc;
+  --surface-elevated: #f1f5f9;
+  --surface-muted: #e2e8f0;
+
+  /* Background tokens */
+  --background-page: #ffffff;
+  --background-panel: #f8fafc;
+  --background-overlay: rgba(11, 16, 32, 0.6);
+
+  /* Text tokens */
+  --text-primary: #0b1020;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+
+  /* Border tokens */
+  --border-default: #e2e8f0;
+  --border-muted: #cbd5e1;
+
+  /* Interactive tokens */
+  --interactive-primary: #6366f1;
+  --interactive-hover: #4f46e5;
+  --interactive-active: #4338ca;
+  --interactive-disabled: #cbd5e1;
+
+  /* Shadow tokens */
+  --shadow-small: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-medium: 0 8px 24px rgba(16, 24, 40, 0.08);
+  --shadow-large: 0 24px 48px rgba(16, 24, 40, 0.12);
+
+  /* Spacing tokens (semantic) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xxxl: 64px;
+
+  /* Radius tokens */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Z-index tokens */
+  --z-background: 0;
+  --z-default: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 500;
+  --z-modal: 900;
+  --z-toast: 1100;
+  --z-tooltip: 1200;
+
+  /* Motion tokens */
+  --motion-duration-fastest: 100ms;
+  --motion-duration-fast: 150ms;
+  --motion-duration-normal: 250ms;
+  --motion-duration-slow: 400ms;
+  --motion-duration-slowest: 600ms;
+
+  --motion-easing-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-easing-deceleration: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --motion-easing-acceleration: cubic-bezier(0.4, 0.0, 1, 1);
+  --motion-easing-sharp: cubic-bezier(0.4, 0.0, 0.6, 1);
+
+  /* Opacity tokens */
+  --opacity-high: 1;
+  --opacity-medium: 0.6;
+  --opacity-low: 0.3;
+
+  /* Font family */
+  --font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+/* Dark theme */
+[data-theme="dark"],
+[data-color-scheme="dark"] {
+  /* Surface tokens */
+  --surface-primary: #0b1020;
+  --surface-secondary: #1f2937;
+  --surface-elevated: #334155;
+  --surface-muted: #475569;
+
+  /* Background tokens */
+  --background-page: #0b1020;
+  --background-panel: #1f2937;
+  --background-overlay: rgba(11, 16, 32, 0.8);
+
+  /* Text tokens */
+  --text-primary: #f8fafc;
+  --text-secondary: #f1f5f9;
+  --text-muted: #cbd5e1;
+  --text-inverse: #0b1020;
+
+  /* Border tokens */
+  --border-default: #334155;
+  --border-muted: #475569;
+
+  /* Interactive tokens */
+  --interactive-primary: #818cf8;
+  --interactive-hover: #a5b4fc;
+  --interactive-active: #c7d2fe;
+  --interactive-disabled: #334155;
+
+  /* Shadow tokens */
+  --shadow-small: 0 1px 2px rgba(4, 6, 10, 0.6);
+  --shadow-medium: 0 8px 24px rgba(4, 6, 10, 0.6);
+  --shadow-large: 0 24px 48px rgba(4, 6, 10, 0.6);
+}
+
+/* Respects prefers-color-scheme media query */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Surface tokens */
+    --surface-primary: #0b1020;
+    --surface-secondary: #1f2937;
+    --surface-elevated: #334155;
+    --surface-muted: #475569;
+
+    /* Background tokens */
+    --background-page: #0b1020;
+    --background-panel: #1f2937;
+    --background-overlay: rgba(11, 16, 32, 0.8);
+
+    /* Text tokens */
+    --text-primary: #f8fafc;
+    --text-secondary: #f1f5f9;
+    --text-muted: #cbd5e1;
+    --text-inverse: #0b1020;
+
+    /* Border tokens */
+    --border-default: #334155;
+    --border-muted: #475569;
+
+    /* Interactive tokens */
+    --interactive-primary: #818cf8;
+    --interactive-hover: #a5b4fc;
+    --interactive-active: #c7d2fe;
+    --interactive-disabled: #334155;
+
+    /* Shadow tokens */
+    --shadow-small: 0 1px 2px rgba(4, 6, 10, 0.6);
+    --shadow-medium: 0 8px 24px rgba(4, 6, 10, 0.6);
+    --shadow-large: 0 24px 48px rgba(4, 6, 10, 0.6);
+  }
+}
